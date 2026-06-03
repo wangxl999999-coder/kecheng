@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="admin-layout" v-if="isLogin">
+  <div class="admin-layout" v-if="isLogin">
     <el-container>
       <el-aside width="240px" class="sidebar">
         <div class="logo">
@@ -59,7 +59,7 @@
       </el-container>
     </el-container>
   </div>
-  <div id="app" v-else>
+  <div v-else>
     <router-view />
   </div>
 </template>

@@ -29,8 +29,9 @@
   <!-- 未登录状态 -->
   <view class="empty-state" wx:if="{{courses.length === 0 && !loading}}">
     <text class="empty-icon">📖</text>
-    <text wx:if="{{!loading}}">暂无学习记录</text>
-    <button class="btn-primary login-btn" wx:if="{{!loading}}" bindtap="onLoginTap">登录查看</button>
+    <text wx:if="{{app.checkLogin()}}">暂无学习记录</text>
+    <text wx:else>登录后查看学习记录</text>
+    <button class="btn-primary login-btn" wx:if="{{!app.checkLogin()}}" bindtap="onLoginTap">登录查看</button>
   </view>
 
   <view class="loading-wrap" wx:if="{{loading}}">

@@ -114,7 +114,7 @@
         <text class="bar-icon">{{favorited ? '❤️' : '🤍'}}</text>
         <text class="bar-icon-text">收藏</text>
       </view>
-      <view class="bar-icon-wrap">
+      <view class="bar-icon-wrap" bindtap="onServiceTap">
         <text class="bar-icon">💬</text>
         <text class="bar-icon-text">客服</text>
       </view>

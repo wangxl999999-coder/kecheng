@@ -47,7 +47,7 @@ Page({
   },
 
   onSpeedTap() {
-    this.setData({ showSpeedPopup: true })
+    this.setData({ showSpeedPopup: !this.data.showSpeedPopup })
   },
 
   onSpeedSelect(e) {

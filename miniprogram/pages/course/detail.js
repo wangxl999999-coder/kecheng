@@ -91,8 +91,31 @@ Page({
       await api.post('/user/orders', { courseId: course.id, type: buyType })
       wx.showToast({ title: '购买成功', icon: 'success' })
       this.setData({ showBuyPopup: false })
-      setTimeout(() => wx.navigateTo({ url: `/pages/course/learn?courseId=${course.id}` }), 1500)
+      
+      let firstLesson = null
+      for (const chapter of course.chapters) {
+        if (chapter.lessons && chapter.lessons.length > 0) {
+          firstLesson = chapter.lessons[0]
+          break
+        }
+      }
+      if (firstLesson) {
+        const typeMap = { video: 'video', audio: 'audio', article: 'article' }
+        const page = firstLesson.type === 'live' ? 'live' : (typeMap[firstLesson.type] || 'video')
+        setTimeout(() => wx.redirectTo({ 
+          url: `/pages/course/${page}?courseId=${course.id}&lessonId=${firstLesson.id}` 
+        }), 1500)
+      }
     } catch (e) {}
+  },
+
+  onServiceTap() {
+    wx.showModal({
+      title: '联系客服',
+      content: '客服热线：400-888-8888\n工作时间：周一至周五 9:00-18:00',
+      showCancel: false,
+      confirmText: '我知道了'
+    })
   },
 
   async onFavoriteTap() {
