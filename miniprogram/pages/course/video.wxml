@@ -2,8 +2,9 @@
   <!-- 视频播放器 -->
   <view class="video-container">
     <video id="videoPlayer" class="video-player" src="{{currentLesson.url || 'https://www.w3schools.com/html/mov_bbb.mp4'}}"
-      controls show-fullscreen-btn enable-progress-gesture
-      bindfullscreenchange="onFullscreenChange" binderror="onVideoError" />
+      controls show-fullscreen-btn enable-progress-gesture show-center-play-btn
+      object-fit="contain"
+      bindfullscreenchange="onFullscreenChange" binderror="onVideoError" bindplay="onVideoPlay" />
   </view>
 
   <!-- 控制栏 -->
