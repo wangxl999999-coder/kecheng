@@ -6,12 +6,12 @@
         <h1>知趣课堂管理后台</h1>
         <p>知识付费学习平台管理系统</p>
       </div>
-      <el-form ref="form" :model="form" label-width="80px" @keyup.enter="onLogin">
+      <el-form ref="formRef" :model="loginForm" label-width="80px" @keyup.enter="onLogin">
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="form.username" placeholder="请输入用户名" prefix-icon="User" />
+          <el-input v-model="loginForm.username" placeholder="请输入用户名" prefix-icon="User" />
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="form.password" type="password" placeholder="请输入密码" prefix-icon="Lock" show-password />
+          <el-input v-model="loginForm.password" type="password" placeholder="请输入密码" prefix-icon="Lock" show-password />
         </el-form-item>
         <el-button type="primary" class="login-btn" :loading="loading" @click="onLogin">登录</el-button>
       </el-form>
@@ -25,21 +25,21 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElMessage, ElForm } from 'element-plus'
+import { ElMessage } from 'element-plus'
 import request from '../api'
 
 const router = useRouter()
-const form = ref({ username: 'admin', password: '123456' })
+const loginForm = ref({ username: 'admin', password: '123456' })
 const loading = ref(false)
 
 async function onLogin() {
-  if (!form.value.username || !form.value.password) {
+  if (!loginForm.value.username || !loginForm.value.password) {
     ElMessage.warning('请输入用户名和密码')
     return
   }
   try {
     loading.value = true
-    const res = await request.post('/admin/login', form.value)
+    const res = await request.post('/admin/login', loginForm.value)
     localStorage.setItem('adminToken', res.token)
     localStorage.setItem('adminInfo', JSON.stringify(res.adminInfo))
     ElMessage.success('登录成功')

@@ -13,10 +13,13 @@ Page({
     ],
     courses: [],
     loading: true,
+    isLoggedIn: false,
   },
 
   onShow() {
-    if (app.checkLogin()) this.loadCourses()
+    const isLoggedIn = app.checkLogin()
+    this.setData({ isLoggedIn })
+    if (isLoggedIn) this.loadCourses()
     else this.setData({ loading: false })
   },
 

@@ -1,8 +1,12 @@
 const api = require('../../utils/request')
 const app = getApp()
 Page({
-  data: { orders: [], loading: true },
-  onShow() { if (app.checkLogin()) this.loadOrders(); else this.setData({ loading: false }) },
+  data: { orders: [], loading: true, isLoggedIn: false },
+  onShow() {
+    const isLoggedIn = app.checkLogin()
+    this.setData({ isLoggedIn })
+    if (isLoggedIn) this.loadOrders(); else this.setData({ loading: false })
+  },
   async loadOrders() {
     try { const orders = await api.get('/user/orders'); this.setData({ orders, loading: false }) }
     catch (e) { this.setData({ loading: false }) }

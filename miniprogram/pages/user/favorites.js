@@ -1,8 +1,12 @@
 const api = require('../../utils/request')
 const app = getApp()
 Page({
-  data: { favorites: [], loading: true },
-  onShow() { if (app.checkLogin()) this.loadFavorites(); else this.setData({ loading: false }) },
+  data: { favorites: [], loading: true, isLoggedIn: false },
+  onShow() {
+    const isLoggedIn = app.checkLogin()
+    this.setData({ isLoggedIn })
+    if (isLoggedIn) this.loadFavorites(); else this.setData({ loading: false })
+  },
   async loadFavorites() {
     try { const favorites = await api.get('/user/favorites'); this.setData({ favorites, loading: false }) }
     catch (e) { this.setData({ loading: false }) }

@@ -13,10 +13,13 @@ Page({
       { name: '直播', type: 'live' },
     ],
     loading: true,
+    isLoggedIn: false,
   },
 
   onShow() {
-    if (app.checkLogin()) {
+    const isLoggedIn = app.checkLogin()
+    this.setData({ isLoggedIn })
+    if (isLoggedIn) {
       this.loadUserCourses()
     } else {
       this.setData({ courses: [], loading: false })

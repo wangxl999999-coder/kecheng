@@ -8,8 +8,13 @@ Page({
     shareDesc: '',
     posterUrl: '',
     stats: { totalIncome: 0, totalOrders: 0, totalFans: 0 },
+    isLoggedIn: false,
   },
-  onShow() { if (app.checkLogin()) this.loadStats(); else {} },
+  onShow() {
+    const isLoggedIn = app.checkLogin()
+    this.setData({ isLoggedIn })
+    if (isLoggedIn) this.loadStats()
+  },
   async loadStats() {
     try {
       const res = await api.post('/user/distribution/poster', { courseId: this.data.courseId })

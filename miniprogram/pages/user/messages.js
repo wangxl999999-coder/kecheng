@@ -1,8 +1,12 @@
 const api = require('../../utils/request')
 const app = getApp()
 Page({
-  data: { messages: [], loading: true },
-  onShow() { if (app.checkLogin()) this.loadMessages(); else this.setData({ loading: false }) },
+  data: { messages: [], loading: true, isLoggedIn: false },
+  onShow() {
+    const isLoggedIn = app.checkLogin()
+    this.setData({ isLoggedIn })
+    if (isLoggedIn) this.loadMessages(); else this.setData({ loading: false })
+  },
   async loadMessages() {
     try { const messages = await api.get('/user/messages'); this.setData({ messages, loading: false }) }
     catch (e) { this.setData({ loading: false }) }
