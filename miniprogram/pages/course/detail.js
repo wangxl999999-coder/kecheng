@@ -121,7 +121,7 @@ Page({
   async onFavoriteTap() {
     if (!app.requireLogin()) return
     try {
-      const res = await api.post('/user/favorites', { courseId: this.courseId })
+      const res = await api.post('/user/favorites', { courseId: parseInt(this.courseId) })
       this.setData({ favorited: res.favorited })
       wx.showToast({ title: res.favorited ? '已收藏' : '已取消收藏', icon: 'none' })
     } catch (e) {}

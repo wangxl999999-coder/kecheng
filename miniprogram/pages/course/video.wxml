@@ -3,7 +3,7 @@
   <view class="video-container">
     <video id="videoPlayer" class="video-player" src="{{currentLesson.url || 'https://www.w3schools.com/html/mov_bbb.mp4'}}"
       controls show-fullscreen-btn enable-progress-gesture
-      playback-rate="{{currentSpeed}}" bindfullscreenchange="onFullscreenChange" binderror="onVideoError" />
+      bindfullscreenchange="onFullscreenChange" binderror="onVideoError" />
   </view>
 
   <!-- 控制栏 -->

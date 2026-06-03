@@ -43,7 +43,7 @@ async function onLogin() {
     localStorage.setItem('adminToken', res.token)
     localStorage.setItem('adminInfo', JSON.stringify(res.adminInfo))
     ElMessage.success('登录成功')
-    setTimeout(() => location.reload(), 500)
+    router.push('/')
   } catch (e) {
   } finally {
     loading.value = false

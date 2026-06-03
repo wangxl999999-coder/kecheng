@@ -73,7 +73,7 @@ router.get('/favorites', auth, (req, res) => {
 })
 
 router.post('/favorites', auth, (req, res) => {
-  const { courseId } = req.body
+  const courseId = parseInt(req.body.courseId)
   const exist = data.favorites.find(f => f.userId === req.user.id && f.courseId === courseId)
   if (exist) {
     data.favorites.splice(data.favorites.indexOf(exist), 1)

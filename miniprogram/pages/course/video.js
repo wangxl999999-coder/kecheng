@@ -63,6 +63,8 @@ Page({
   onSpeedSelect(e) {
     const speed = e.currentTarget.dataset.speed
     this.setData({ currentSpeed: speed, showSpeedPopup: false })
+    const videoCtx = wx.createVideoContext('videoPlayer', this)
+    videoCtx.playbackRate(speed)
   },
 
   onFullscreenChange(e) {
@@ -72,7 +74,7 @@ Page({
   onFullscreenTap() {
     const videoCtx = wx.createVideoContext('videoPlayer', this)
     if (!this.data.isFullscreen) {
-      videoCtx.requestFullScreen({ direction: 0 })
+      videoCtx.requestFullScreen({ direction: 90 })
     } else {
       videoCtx.exitFullScreen()
     }

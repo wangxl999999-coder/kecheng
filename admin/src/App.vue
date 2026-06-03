@@ -75,6 +75,10 @@ const router = useRouter()
 const route = useRoute()
 const isLogin = ref(!!localStorage.getItem('adminToken'))
 
+watch(() => route.path, () => {
+  isLogin.value = !!localStorage.getItem('adminToken')
+})
+
 onMounted(() => {
   const token = localStorage.getItem('adminToken')
   isLogin.value = !!token
@@ -95,7 +99,8 @@ function handleCommand(cmd) {
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-.admin-layout { height: 100vh; }
+.admin-layout { height: 100vh; display: flex; flex-direction: column; }
+.admin-layout > .el-container { height: 100%; }
 .sidebar { background: #304156; color: #fff; }
 .sidebar .logo { display: flex; align-items: center; justify-content: center; height: 60px; font-size: 20px; font-weight: bold; color: #fff; background: #2b3648; }
 .sidebar .logo .el-icon { margin-right: 10px; font-size: 24px; }
