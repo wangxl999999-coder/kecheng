@@ -17,6 +17,7 @@ Page({
   onLoad(options) {
     this.setData({ courseId: options.courseId, lessonId: parseInt(options.lessonId) })
     this.loadCourse()
+    this.loadFavoriteStatus()
   },
 
   async loadCourse() {
@@ -33,6 +34,15 @@ Page({
     }
     this.setData({ course, currentLesson })
     this.updateProgress()
+  },
+
+  async loadFavoriteStatus() {
+    if (!app.checkLogin()) return
+    try {
+      const favorites = await api.get('/user/favorites')
+      const favorited = favorites.some(f => f.courseId === parseInt(this.data.courseId))
+      this.setData({ favorited })
+    } catch (e) {}
   },
 
   async updateProgress() {
@@ -60,11 +70,11 @@ Page({
   },
 
   onFullscreenTap() {
-    const video = wx.createSelectorQuery().select('#videoPlayer')
+    const videoCtx = wx.createVideoContext('videoPlayer', this)
     if (!this.data.isFullscreen) {
-      video.requestFullScreen({ direction: 0 })
+      videoCtx.requestFullScreen({ direction: 0 })
     } else {
-      wx.exitFullScreen()
+      videoCtx.exitFullScreen()
     }
   },
 

@@ -21,8 +21,8 @@
 
     <!-- 辅助功能 -->
     <view class="audio-tools">
-      <view class="tool-item" bindtap="onFloatingTap">
-        <text>📌 悬浮播放</text>
+      <view class="tool-item {{isFloating ? 'active' : ''}}" bindtap="onFloatingTap">
+        <text>{{isFloating ? '📌 已开启后台' : '📌 悬浮播放'}}</text>
       </view>
       <view class="tool-item" bindtap="onTimerTap">
         <text>⏰ 定时关闭{{timerText ? ' (' + timerText + ')' : ''}}</text>

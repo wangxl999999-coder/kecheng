@@ -31,7 +31,7 @@
         <el-table-column label="操作" width="160" fixed="right">
           <template #default="s">
             <el-button type="text" size="small" @click="onViewDetail(s.row)">详情</el-button>
-            <el-button type="text" size="small" type="danger" v-if="s.row.status === 'pending'" @click="onCancel(s.row)">取消订单</el-button>
+            <el-button type="text" size="small" style="color: #f56c6c;" v-if="s.row.status === 'pending'" @click="onCancel(s.row)">取消订单</el-button>
           </template>
         </el-table-column>
       </el-table>

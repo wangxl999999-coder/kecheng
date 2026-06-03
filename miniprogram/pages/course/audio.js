@@ -63,7 +63,7 @@ Page({
   },
 
   onTimerTap() {
-    this.setData({ showTimerPopup: true })
+    this.setData({ showTimerPopup: !this.data.showTimerPopup })
   },
 
   onTimerSelect(e) {
@@ -105,7 +105,13 @@ Page({
   },
 
   onFloatingTap() {
-    wx.showToast({ title: '已开启悬浮播放', icon: 'none' })
+    const isFloating = !this.data.isFloating
+    this.setData({ isFloating })
+    if (isFloating) {
+      wx.showToast({ title: '已开启后台播放模式', icon: 'none' })
+    } else {
+      wx.showToast({ title: '已关闭后台播放', icon: 'none' })
+    }
   },
 
   onLessonTap(e) {

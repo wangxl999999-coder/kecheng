@@ -35,8 +35,8 @@
         <el-table-column label="操作" width="240" fixed="right">
           <template #default="s">
             <el-button type="text" size="small" @click="onEdit(s.row)">编辑</el-button>
-            <el-button type="text" size="small" :type="s.row.status === 'published' ? 'warning' : 'success'" @click="toggleStatus(s.row)">{{ s.row.status === 'published' ? '下架' : '上架' }}</el-button>
-            <el-button type="text" size="small" type="danger" @click="onDelete(s.row)">删除</el-button>
+            <el-button type="text" size="small" :style="{ color: s.row.status === 'published' ? '#e6a23c' : '#67c23a' }" @click="toggleStatus(s.row)">{{ s.row.status === 'published' ? '下架' : '上架' }}</el-button>
+            <el-button type="text" size="small" style="color: #f56c6c;" @click="onDelete(s.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>

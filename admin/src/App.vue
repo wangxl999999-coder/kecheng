@@ -59,19 +59,21 @@
       </el-container>
     </el-container>
   </div>
-  <div v-else>
-    <router-view />
-  </div>
+  <router-view v-else v-slot="{ Component }">
+    <transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 
 const router = useRouter()
 const route = useRoute()
-const isLogin = ref(false)
+const isLogin = ref(!!localStorage.getItem('adminToken'))
 
 onMounted(() => {
   const token = localStorage.getItem('adminToken')
