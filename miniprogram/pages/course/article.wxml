@@ -1,0 +1,51 @@
+<view class="page-article" wx:if="{{course}}">
+  <!-- 文章标题 -->
+  <view class="article-header">
+    <text class="article-title">{{currentLesson.title}}</text>
+    <view class="article-meta">
+      <text class="article-teacher">{{course.teacherName}}</text>
+      <text class="article-update">{{course.updatedAt}}</text>
+    </view>
+  </view>
+
+  <!-- 文章内容 -->
+  <view class="article-content card">
+    <rich-text nodes="{{currentLesson.content || '<p>专栏内容加载中...</p>'}}" bindlongpress="onTextLongPress" />
+  </view>
+
+  <!-- 划线笔记列表 -->
+  <view class="notes-section" wx:if="{{notes.length > 0}}">
+    <text class="notes-title">📝 我的笔记</text>
+    <view class="note-item" wx:for="{{notes}}" wx:key="id">
+      <view class="note-highlight" wx:if="{{item.highlight}}">{{item.highlight}}</view>
+      <text class="note-content">{{item.content}}</text>
+      <text class="note-time">{{item.createdAt}}</text>
+    </view>
+  </view>
+
+  <!-- 课程目录 -->
+  <view class="chapter-list">
+    <view class="chapter-item" wx:for="{{course.chapters}}" wx:key="id">
+      <view class="chapter-header">{{item.title}}</view>
+      <view class="lesson-row {{lesson.id === lessonId ? 'active' : ''}}" wx:for="{{item.lessons}}" wx:key="id" wx:for-item="lesson" bindtap="onLessonTap" data-id="{{lesson.id}}">
+        <text class="lesson-icon">📖</text>
+        <text class="lesson-name">{{lesson.title}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 添加笔记弹窗 -->
+  <view class="popup-mask" wx:if="{{showNotePopup}}" bindtap="onCloseNotePopup">
+    <view class="note-popup" catchtap="">
+      <text class="note-popup-title">添加划线笔记</text>
+      <view class="note-highlight-preview" wx:if="{{highlightText}}">
+        <text class="highlight-text">{{highlightText}}</text>
+      </view>
+      <textarea class="note-input" placeholder="写下你的思考..." value="{{noteContent}}" bindinput="onNoteInputChange" maxlength="500" />
+      <view class="note-actions">
+        <button class="note-cancel" bindtap="onCloseNotePopup">取消</button>
+        <button class="btn-primary note-save" bindtap="onSaveNote">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

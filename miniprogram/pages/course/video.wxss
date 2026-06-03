@@ -1,0 +1,143 @@
+.page-video {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.video-container {
+  width: 100%;
+  background: #000;
+}
+
+.video-player {
+  width: 100%;
+  height: 420rpx;
+}
+
+.control-bar {
+  display: flex;
+  background: #fff;
+  padding: 16rpx 30rpx;
+  justify-content: space-around;
+}
+
+.control-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.control-icon {
+  font-size: 36rpx;
+  margin-bottom: 4rpx;
+}
+
+.control-text {
+  font-size: 22rpx;
+  color: #666;
+}
+
+.lesson-title-bar {
+  background: #fff;
+  padding: 20rpx 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.lesson-title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.chapter-list {
+  padding: 0 30rpx;
+}
+
+.chapter-item {
+  background: #fff;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+
+.chapter-header {
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.lesson-row {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx;
+  border-bottom: 1rpx solid #f8f8f8;
+}
+
+.lesson-row.active {
+  background: #fff8f5;
+}
+
+.lesson-row.active .lesson-name {
+  color: #ff6b35;
+}
+
+.lesson-icon {
+  margin-right: 12rpx;
+}
+
+.lesson-name {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.lesson-dur {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.popup-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.speed-popup {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  width: 80%;
+}
+
+.speed-title {
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.speed-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  justify-content: center;
+}
+
+.speed-item {
+  padding: 12rpx 30rpx;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+}
+
+.speed-item.active {
+  border-color: #ff6b35;
+  color: #ff6b35;
+  background: #fff8f5;
+}

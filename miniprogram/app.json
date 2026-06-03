@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/category/category",
+    "pages/course/learn",
+    "pages/user/index",
+    "pages/search/search",
+    "pages/course/detail",
+    "pages/course/video",
+    "pages/course/audio",
+    "pages/course/article",
+    "pages/course/live",
+    "pages/market/seckill",
+    "pages/market/group",
+    "pages/market/coupon",
+    "pages/user/login",
+    "pages/user/courses",
+    "pages/user/orders",
+    "pages/user/favorites",
+    "pages/user/notes",
+    "pages/user/distribution",
+    "pages/user/messages"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "知趣课堂",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#ff6b35",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/tab_home.png",
+        "selectedIconPath": "images/tab_home_active.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "images/tab_category.png",
+        "selectedIconPath": "images/tab_category_active.png"
+      },
+      {
+        "pagePath": "pages/course/learn",
+        "text": "学习",
+        "iconPath": "images/tab_learn.png",
+        "selectedIconPath": "images/tab_learn_active.png"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": "我的",
+        "iconPath": "images/tab_user.png",
+        "selectedIconPath": "images/tab_user_active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,39 @@
+<view class="page-learn">
+  <!-- Tab切换 -->
+  <view class="learn-tabs">
+    <scroll-view scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="tabs-inner">
+        <view class="tab-item {{currentTab === index ? 'active' : ''}}" wx:for="{{tabs}}" wx:key="name" bindtap="onTabChange" data-index="{{index}}">
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 已购课程列表 -->
+  <view class="course-list" wx:if="{{courses.length > 0}}">
+    <view class="learn-card card" wx:for="{{courses}}" wx:key="id">
+      <image class="course-cover" src="{{item.course.cover}}" mode="aspectFill" bindtap="onCourseTap" data-id="{{item.courseId}}" />
+      <view class="course-info">
+        <text class="course-title text-ellipsis-2" bindtap="onCourseTap" data-id="{{item.courseId}}">{{item.course.title}}</text>
+        <view class="progress-row">
+          <progress percent="{{item.progress}}" stroke-width="6" activeColor="#ff6b35" backgroundColor="#f0f0f0" />
+          <text class="progress-text">{{item.progress}}%</text>
+        </view>
+        <text class="learn-info">已学{{item.learnedLessons.length}}课时 · 剩余{{item.totalLessons - item.learnedLessons.length}}课时</text>
+      </view>
+      <button class="btn-primary continue-btn" catchtap="onContinueLearn" data-id="{{item.courseId}}">继续学习</button>
+    </view>
+  </view>
+
+  <!-- 未登录状态 -->
+  <view class="empty-state" wx:if="{{courses.length === 0 && !loading}}">
+    <text class="empty-icon">📖</text>
+    <text wx:if="{{!loading}}">暂无学习记录</text>
+    <button class="btn-primary login-btn" wx:if="{{!loading}}" bindtap="onLoginTap">登录查看</button>
+  </view>
+
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

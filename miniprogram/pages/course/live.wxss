@@ -1,0 +1,182 @@
+.page-live {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.live-area {
+  position: relative;
+  width: 100%;
+  height: 420rpx;
+  background: #000;
+}
+
+.live-player {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.live-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+
+.live-icon {
+  font-size: 80rpx;
+  margin-bottom: 16rpx;
+}
+
+.live-text {
+  font-size: 30rpx;
+}
+
+.live-upcoming, .live-ended {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.live-cover {
+  width: 100%;
+  height: 100%;
+}
+
+.upcoming-overlay, .ended-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.upcoming-text, .ended-text {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 12rpx;
+}
+
+.upcoming-time {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.replay-btn {
+  width: 240rpx;
+  margin-top: 20rpx;
+}
+
+.live-badge {
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+}
+
+.live-badge.living {
+  background: #e91e63;
+}
+
+.live-info {
+  margin: 20rpx 30rpx;
+}
+
+.live-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.live-desc {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 40rpx;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.live-teacher {
+  font-size: 26rpx;
+  color: #999;
+  display: block;
+}
+
+.live-actions {
+  padding: 0 30rpx;
+  margin-top: 20rpx;
+}
+
+.reserve-btn, .buy-btn {
+  width: 100%;
+  margin-bottom: 20rpx;
+}
+
+.reserved-tip {
+  text-align: center;
+  font-size: 28rpx;
+  color: #4caf50;
+  padding: 20rpx;
+  background: #e8f5e9;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+}
+
+.popup-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+}
+
+.popup-content {
+  width: 100%;
+  background: #fff;
+  border-radius: 24rpx 24rpx 0 0;
+  padding: 40rpx 30rpx;
+  text-align: center;
+  padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+.popup-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.popup-course-name {
+  font-size: 28rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.popup-price {
+  font-size: 40rpx;
+  color: #ff6b35;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 30rpx;
+}
+
+.confirm-btn {
+  width: 100%;
+}

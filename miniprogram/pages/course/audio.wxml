@@ -1,0 +1,56 @@
+<view class="page-audio" wx:if="{{course}}">
+  <!-- 音频播放区域 -->
+  <view class="audio-player">
+    <image class="audio-cover" src="{{course.cover}}" mode="aspectFill" />
+    <text class="audio-title">{{currentLesson.title}}</text>
+    <text class="audio-teacher">{{course.teacherName}}</text>
+
+    <!-- 进度条 -->
+    <view class="audio-progress">
+      <text class="time">{{currentTime}}</text>
+      <slider class="slider" value="0" min="0" max="100" activeColor="#ff6b35" block-size="12" />
+      <text class="time">{{currentLesson.duration || '00:00'}}</text>
+    </view>
+
+    <!-- 播放控制 -->
+    <view class="audio-controls">
+      <text class="ctrl-btn" bindtap="onPrevTap">⏮</text>
+      <text class="ctrl-play" bindtap="onPlayTap">{{isPlaying ? '⏸' : '▶️'}}</text>
+      <text class="ctrl-btn" bindtap="onNextTap">⏭</text>
+    </view>
+
+    <!-- 辅助功能 -->
+    <view class="audio-tools">
+      <view class="tool-item" bindtap="onFloatingTap">
+        <text>📌 悬浮播放</text>
+      </view>
+      <view class="tool-item" bindtap="onTimerTap">
+        <text>⏰ 定时关闭{{timerText ? ' (' + timerText + ')' : ''}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 课程目录 -->
+  <view class="chapter-list">
+    <view class="chapter-item" wx:for="{{course.chapters}}" wx:key="id">
+      <view class="chapter-header">{{item.title}}</view>
+      <view class="lesson-row {{lesson.id === lessonId ? 'active' : ''}}" wx:for="{{item.lessons}}" wx:key="id" wx:for-item="lesson" bindtap="onLessonTap" data-id="{{lesson.id}}">
+        <text class="lesson-icon">🎵</text>
+        <text class="lesson-name">{{lesson.title}}</text>
+        <text class="lesson-dur" wx:if="{{lesson.duration}}">{{lesson.duration}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 定时关闭弹窗 -->
+  <view class="popup-mask" wx:if="{{showTimerPopup}}" bindtap="onTimerTap">
+    <view class="timer-popup" catchtap="">
+      <text class="timer-title">定时关闭</text>
+      <view class="timer-list">
+        <view class="timer-item {{selectedTimer === item ? 'active' : ''}}" wx:for="{{timerOptions}}" wx:key="*this" bindtap="onTimerSelect" data-minutes="{{item}}">
+          {{item === 0 ? '不设置' : item + '分钟'}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

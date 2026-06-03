@@ -1,0 +1,39 @@
+<view class="page-seckill">
+  <view class="seckill-header">
+    <text class="header-title">⚡ 限时秒杀</text>
+    <text class="header-desc">超值课程 限时抢购</text>
+  </view>
+
+  <view class="seckill-list">
+    <view class="seckill-card card" wx:for="{{seckillCourses}}" wx:key="id" bindtap="onCourseTap" data-id="{{item.courseId}}">
+      <image class="seckill-cover" src="{{item.cover}}" mode="aspectFill" />
+      <view class="seckill-info">
+        <text class="seckill-title text-ellipsis">{{item.title}}</text>
+        <view class="seckill-price-row">
+          <text class="seckill-price">¥{{item.seckillPrice}}</text>
+          <text class="original-price">¥{{item.originalPrice}}</text>
+        </view>
+        <view class="seckill-progress">
+          <progress percent="{{item.soldCount / item.totalCount * 100}}" stroke-width="8" activeColor="#ff6b35" backgroundColor="#ffe0d0" />
+          <text class="seckill-sold">已抢{{item.soldCount}}件</text>
+        </view>
+        <view class="seckill-countdown" wx:if="{{countdowns[item.id]}}">
+          <text wx:if="{{countdowns[item.id].ended}}" class="ended-text">已结束</text>
+          <view class="countdown-row" wx:else>
+            <text class="countdown-label">距结束</text>
+            <text class="countdown-num">{{countdowns[item.id].hours}}</text>
+            <text class="countdown-sep">:</text>
+            <text class="countdown-num">{{countdowns[item.id].minutes}}</text>
+            <text class="countdown-sep">:</text>
+            <text class="countdown-num">{{countdowns[item.id].seconds}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{seckillCourses.length === 0 && !loading}}">
+    <text class="empty-icon">⏰</text>
+    <text>暂无秒杀活动</text>
+  </view>
+</view>

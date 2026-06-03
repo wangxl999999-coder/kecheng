@@ -1,0 +1,53 @@
+<view class="page-video" wx:if="{{course}}">
+  <!-- 视频播放器 -->
+  <view class="video-container">
+    <video id="videoPlayer" class="video-player" src="{{currentLesson.url || 'https://www.w3schools.com/html/mov_bbb.mp4'}}"
+      controls show-fullscreen-btn enable-progress-gesture
+      playback-rate="{{currentSpeed}}" bindfullscreenchange="onFullscreenChange" binderror="onVideoError" />
+  </view>
+
+  <!-- 控制栏 -->
+  <view class="control-bar">
+    <view class="control-item" bindtap="onSpeedTap">
+      <text class="control-icon">⚡</text>
+      <text class="control-text">{{currentSpeed}}x</text>
+    </view>
+    <view class="control-item" bindtap="onFullscreenTap">
+      <text class="control-icon">⛶</text>
+      <text class="control-text">全屏</text>
+    </view>
+    <view class="control-item" bindtap="onFavoriteTap">
+      <text class="control-icon">{{favorited ? '❤️' : '🤍'}}</text>
+      <text class="control-text">收藏</text>
+    </view>
+  </view>
+
+  <!-- 课程标题 -->
+  <view class="lesson-title-bar">
+    <text class="lesson-title">{{currentLesson.title}}</text>
+  </view>
+
+  <!-- 课程目录 -->
+  <view class="chapter-list">
+    <view class="chapter-item" wx:for="{{course.chapters}}" wx:key="id">
+      <view class="chapter-header">{{item.title}}</view>
+      <view class="lesson-row {{lesson.id === lessonId ? 'active' : ''}}" wx:for="{{item.lessons}}" wx:key="id" wx:for-item="lesson" bindtap="onLessonTap" data-id="{{lesson.id}}">
+        <text class="lesson-icon">{{lesson.type === 'video' ? '🎬' : '🎵'}}</text>
+        <text class="lesson-name">{{lesson.title}}</text>
+        <text class="lesson-dur" wx:if="{{lesson.duration}}">{{lesson.duration}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 倍速弹窗 -->
+  <view class="popup-mask" wx:if="{{showSpeedPopup}}" bindtap="onSpeedTap">
+    <view class="speed-popup" catchtap="">
+      <text class="speed-title">选择播放速度</text>
+      <view class="speed-list">
+        <view class="speed-item {{currentSpeed === item ? 'active' : ''}}" wx:for="{{speeds}}" wx:key="*this" bindtap="onSpeedSelect" data-speed="{{item}}">
+          {{item}}x
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

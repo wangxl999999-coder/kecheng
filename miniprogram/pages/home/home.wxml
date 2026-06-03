@@ -1,0 +1,111 @@
+<view class="page-home">
+  <!-- 搜索栏 -->
+  <view class="search-bar" bindtap="onSearchTap">
+    <view class="search-input">
+      <text class="search-icon">🔍</text>
+      <text class="search-placeholder">搜索课程、讲师</text>
+    </view>
+  </view>
+
+  <!-- 轮播图 -->
+  <swiper class="banner-swiper" indicator-dots autoplay circular interval="4000">
+    <swiper-item wx:for="{{banners}}" wx:key="id" bindtap="onBannerTap" data-link="{{item.link}}">
+      <image class="banner-image" src="{{item.image}}" mode="aspectFill" />
+    </swiper-item>
+  </swiper>
+
+  <!-- 分类导航 -->
+  <view class="category-nav">
+    <view class="category-item" wx:for="{{categories}}" wx:key="id" bindtap="onCategoryTap" data-type="{{item.type}}">
+      <view class="category-icon">{{item.icon}}</view>
+      <text class="category-name">{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 爆款课程 -->
+  <view class="section">
+    <view class="section-header flex-between">
+      <text class="section-title">🔥 爆款课程</text>
+      <text class="section-more" bindtap="onMoreHot">更多 ›</text>
+    </view>
+    <scroll-view class="course-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="course-scroll-item" wx:for="{{hotCourses}}" wx:key="id" bindtap="onCourseTap" data-id="{{item.id}}">
+        <image class="course-cover" src="{{item.cover}}" mode="aspectFill" />
+        <view class="course-info">
+          <text class="course-title text-ellipsis-2">{{item.title}}</text>
+          <view class="course-meta">
+            <text class="price">{{item.price}}</text>
+            <text class="original-price">{{item.originalPrice}}</text>
+          </view>
+          <text class="course-buy">{{item.buyCount}}人已购</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 新课上架 -->
+  <view class="section">
+    <view class="section-header flex-between">
+      <text class="section-title">✨ 新课上架</text>
+      <text class="section-more" bindtap="onMoreNew">更多 ›</text>
+    </view>
+    <scroll-view class="course-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="course-scroll-item" wx:for="{{newCourses}}" wx:key="id" bindtap="onCourseTap" data-id="{{item.id}}">
+        <image class="course-cover" src="{{item.cover}}" mode="aspectFill" />
+        <view class="course-info">
+          <text class="course-title text-ellipsis-2">{{item.title}}</text>
+          <view class="course-meta">
+            <text class="price">{{item.price}}</text>
+            <text class="original-price">{{item.originalPrice}}</text>
+          </view>
+          <text class="course-buy">{{item.buyCount}}人已购</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 限时秒杀 -->
+  <view class="section" wx:if="{{seckillCourses.length > 0}}">
+    <view class="section-header flex-between">
+      <text class="section-title">⚡ 限时秒杀</text>
+      <text class="section-more" bindtap="onSeckillTap">更多 ›</text>
+    </view>
+    <view class="seckill-list">
+      <view class="seckill-item card" wx:for="{{seckillCourses}}" wx:key="id" bindtap="onCourseTap" data-id="{{item.courseId}}">
+        <image class="seckill-cover" src="{{item.cover}}" mode="aspectFill" />
+        <view class="seckill-info">
+          <text class="seckill-title text-ellipsis">{{item.title}}</text>
+          <view class="seckill-price-row">
+            <text class="seckill-price">¥{{item.seckillPrice}}</text>
+            <text class="original-price">{{item.originalPrice}}</text>
+          </view>
+          <view class="seckill-progress">
+            <progress percent="{{item.soldCount / item.totalCount * 100}}" stroke-width="6" activeColor="#ff6b35" backgroundColor="#ffe0d0" />
+            <text class="seckill-sold">已抢{{item.soldCount}}件</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 拼团专区 -->
+  <view class="section" wx:if="{{groupCourses.length > 0}}">
+    <view class="section-header flex-between">
+      <text class="section-title">👥 拼团专区</text>
+      <text class="section-more" bindtap="onGroupTap">更多 ›</text>
+    </view>
+    <view class="group-list">
+      <view class="group-item card" wx:for="{{groupCourses}}" wx:key="id" bindtap="onCourseTap" data-id="{{item.courseId}}">
+        <view class="group-info">
+          <text class="group-title text-ellipsis">{{item.title}}</text>
+          <view class="group-price-row">
+            <text class="group-price">¥{{item.price}}</text>
+            <text class="original-price">{{item.originalPrice}}</text>
+            <text class="tag tag-group">{{item.groupCount}}人团</text>
+          </view>
+          <text class="group-joined">{{item.joinedCount}}人正在拼</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+<view class="page-group">
+  <view class="group-header">
+    <text class="header-title">👥 拼团专区</text>
+    <text class="header-desc">邀好友 享低价</text>
+  </view>
+  <view class="group-list">
+    <view class="group-card card" wx:for="{{groupCourses}}" wx:key="id" bindtap="onCourseTap" data-id="{{item.courseId}}">
+      <view class="group-info">
+        <text class="group-title text-ellipsis-2">{{item.title}}</text>
+        <view class="group-price-row">
+          <text class="group-price">¥{{item.price}}</text>
+          <text class="original-price">¥{{item.originalPrice}}</text>
+          <text class="tag tag-group">{{item.groupCount}}人团</text>
+        </view>
+        <text class="group-joined">{{item.joinedCount}}人正在拼</text>
+        <view class="group-action">
+          <text class="group-time">{{item.groupTime}}小时内成团</text>
+          <button class="btn-primary group-btn" catchtap="">去拼团</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="empty-state" wx:if="{{groupCourses.length === 0 && !loading}}">
+    <text class="empty-icon">👥</text>
+    <text>暂无拼团活动</text>
+  </view>
+</view>

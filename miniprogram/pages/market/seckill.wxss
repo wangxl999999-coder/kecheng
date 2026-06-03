@@ -1,0 +1,118 @@
+.page-seckill {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.seckill-header {
+  background: linear-gradient(135deg, #ff6b35, #ff8f5e);
+  padding: 40rpx 30rpx;
+  color: #fff;
+}
+
+.header-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.header-desc {
+  font-size: 26rpx;
+  opacity: 0.8;
+}
+
+.seckill-list {
+  padding: 20rpx 30rpx;
+}
+
+.seckill-card {
+  display: flex;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.seckill-cover {
+  width: 200rpx;
+  height: 150rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.seckill-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.seckill-title {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.seckill-price-row {
+  display: flex;
+  align-items: center;
+  margin-top: 6rpx;
+}
+
+.seckill-price {
+  color: #ff6b35;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-right: 12rpx;
+}
+
+.seckill-progress {
+  display: flex;
+  align-items: center;
+  margin-top: 8rpx;
+}
+
+.seckill-progress progress {
+  flex: 1;
+  margin-right: 12rpx;
+}
+
+.seckill-sold {
+  font-size: 22rpx;
+  color: #999;
+  white-space: nowrap;
+}
+
+.seckill-countdown {
+  margin-top: 8rpx;
+}
+
+.ended-text {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.countdown-row {
+  display: flex;
+  align-items: center;
+}
+
+.countdown-label {
+  font-size: 22rpx;
+  color: #999;
+  margin-right: 8rpx;
+}
+
+.countdown-num {
+  background: #ff6b35;
+  color: #fff;
+  padding: 2rpx 8rpx;
+  border-radius: 4rpx;
+  font-size: 22rpx;
+  min-width: 36rpx;
+  text-align: center;
+}
+
+.countdown-sep {
+  margin: 0 4rpx;
+  color: #ff6b35;
+  font-size: 22rpx;
+}

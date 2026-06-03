@@ -1,0 +1,52 @@
+<view class="page-live" wx:if="{{course}}">
+  <!-- 直播区域 -->
+  <view class="live-area">
+    <view class="live-player" wx:if="{{liveStatus === 'living'}}">
+      <view class="live-placeholder">
+        <text class="live-icon">📡</text>
+        <text class="live-text">正在直播中...</text>
+      </view>
+    </view>
+    <view class="live-upcoming" wx:elif="{{liveStatus === 'upcoming'}}">
+      <image class="live-cover" src="{{course.cover}}" mode="aspectFill" />
+      <view class="upcoming-overlay">
+        <text class="upcoming-text">即将开播</text>
+        <text class="upcoming-time">{{course.liveInfo.startTime}}</text>
+      </view>
+    </view>
+    <view class="live-ended" wx:else>
+      <image class="live-cover" src="{{course.cover}}" mode="aspectFill" />
+      <view class="ended-overlay">
+        <text class="ended-text">直播已结束</text>
+        <button class="btn-primary replay-btn" bindtap="onReplay" wx:if="{{course.liveInfo.hasReplay}}">观看回放</button>
+      </view>
+    </view>
+    <view class="live-badge {{liveStatus === 'living' ? 'living' : ''}}">
+      {{liveStatus === 'living' ? '● 直播中' : liveStatus === 'upcoming' ? '未开始' : '已结束'}}
+    </view>
+  </view>
+
+  <!-- 直播信息 -->
+  <view class="live-info card">
+    <text class="live-title">{{course.title}}</text>
+    <text class="live-desc">{{course.description}}</text>
+    <text class="live-teacher">讲师：{{course.teacherName}}</text>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="live-actions">
+    <button class="btn-primary reserve-btn" wx:if="{{liveStatus === 'upcoming' && !hasReserved}}" bindtap="onReserve">预约提醒</button>
+    <view class="reserved-tip" wx:if="{{hasReserved}}">✅ 已预约，开播前将提醒您</view>
+    <button class="btn-primary buy-btn" wx:if="{{!course.purchased}}" bindtap="onBuyTap">立即购买 ¥{{course.price}}</button>
+  </view>
+
+  <!-- 购买弹窗 -->
+  <view class="popup-mask" wx:if="{{showBuyPopup}}" bindtap="onClosePopup">
+    <view class="popup-content" catchtap="">
+      <view class="popup-title">购买课程</view>
+      <text class="popup-course-name">{{course.title}}</text>
+      <text class="popup-price">¥{{course.price}}</text>
+      <button class="btn-primary confirm-btn" bindtap="onConfirmBuy">确认购买</button>
+    </view>
+  </view>
+</view>
