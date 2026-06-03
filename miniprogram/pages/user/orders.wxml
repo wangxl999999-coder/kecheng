@@ -1,0 +1,27 @@
+<view class="page-orders">
+  <view class="order-list" wx:if="{{orders.length > 0}}">
+    <view class="order-card card" wx:for="{{orders}}" wx:key="id">
+      <view class="order-header flex-between">
+        <text class="order-no">订单号：{{item.id}}</text>
+        <text class="order-status {{item.status}}">{{item.status === 'paid' ? '已支付' : '待支付'}}</text>
+      </view>
+      <view class="order-content" bindtap="onCourseTap" data-id="{{item.courseId}}">
+        <text class="order-title">{{item.courseTitle}}</text>
+      </view>
+      <view class="order-footer flex-between">
+        <text class="order-type">{{item.type === 'group' ? '拼团购买' : '单独购买'}}</text>
+        <text class="order-amount">¥{{item.amount}}</text>
+      </view>
+      <text class="order-time">{{item.createdAt}}</text>
+    </view>
+  </view>
+  <view class="empty-state" wx:if="{{orders.length === 0 && !loading && app.checkLogin()}}">
+    <text class="empty-icon">📋</text>
+    <text>暂无订单</text>
+  </view>
+  <view class="empty-state" wx:if="{{!app.checkLogin()}}">
+    <text class="empty-icon">🔒</text>
+    <text>登录后查看订单</text>
+    <button class="btn-primary login-btn" bindtap="onLoginTap">立即登录</button>
+  </view>
+</view>

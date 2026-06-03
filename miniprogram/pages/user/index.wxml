@@ -1,0 +1,57 @@
+<view class="page-user">
+  <!-- 顶部用户信息 -->
+  <view class="user-header">
+    <block wx:if="{{userInfo}}">
+      <image class="user-avatar" src="{{userInfo.avatar || 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=default%20user%20avatar%20icon&image_size=square'}}" mode="aspectFill" />
+      <view class="user-info">
+        <text class="user-name">{{userInfo.nickname}}</text>
+        <text class="user-phone">{{userInfo.phone}}</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="login-prompt" bindtap="onLoginTap">
+        <text class="login-icon">👤</text>
+        <text class="login-text">点击登录</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 统计数据 -->
+  <view class="stats-bar" wx:if="{{userInfo}}">
+    <view class="stat-item">
+      <text class="stat-num">{{stats.courses}}</text>
+      <text class="stat-label">已购课程</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{stats.favorites}}</text>
+      <text class="stat-label">我的收藏</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{stats.coupons}}</text>
+      <text class="stat-label">优惠券</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{stats.orders}}</text>
+      <text class="stat-label">订单数</text>
+    </view>
+  </view>
+
+  <!-- 菜单列表 -->
+  <view class="menu-list" wx:if="{{userInfo}}">
+    <view class="menu-section">
+      <view class="menu-item" wx:for="{{menus}}" wx:key="id" bindtap="onMenuTap" data-url="{{item.url}}">
+        <text class="menu-icon">{{item.icon}}</text>
+        <text class="menu-name">{{item.name}}</text>
+        <text class="menu-badge" wx:if="{{item.id === 'messages' && unreadCount > 0}}">{{unreadCount}}</text>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 未登录提示 -->
+  <view class="empty-state" wx:if="{{!userInfo}}">
+    <text class="empty-icon">🔐</text>
+    <text>登录后查看更多功能</text>
+    <button class="btn-primary login-btn" bindtap="onLoginTap">立即登录</button>
+  </view>
+</view>

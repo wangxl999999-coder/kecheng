@@ -1,0 +1,37 @@
+<view class="page-coupon">
+  <view class="coupon-header">
+    <text class="header-title">🎫 优惠券中心</text>
+    <text class="header-desc">先领券再购物 享更多优惠</text>
+  </view>
+
+  <view class="coupon-list" wx:if="{{coupons.length > 0}}">
+    <view class="coupon-card" wx:for="{{coupons}}" wx:key="id">
+      <view class="coupon-left">
+        <text class="coupon-amount" wx:if="{{item.type === 'cash'}}">¥{{item.value}}</text>
+        <text class="coupon-amount" wx:else>{{item.value / 10}}折</text>
+        <text class="coupon-condition" wx:if="{{item.minSpend > 0}}">满{{item.minSpend}}可用</text>
+        <text class="coupon-condition" wx:else>无门槛</text>
+      </view>
+      <view class="coupon-right">
+        <text class="coupon-name">{{item.name}}</text>
+        <text class="coupon-desc">{{item.desc}}</text>
+        <text class="coupon-time">{{item.startTime}} 至 {{item.endTime}}</text>
+        <button class="coupon-btn" wx:if="{{item.usedCount < item.totalCount}}" bindtap="onReceive" data-id="{{item.id}}">立即领取</button>
+        <text class="coupon-received" wx:else>已领完</text>
+      </view>
+      <view class="coupon-dot-top"></view>
+      <view class="coupon-dot-bottom"></view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{coupons.length === 0 && !loading && app.checkLogin()}}">
+    <text class="empty-icon">🎫</text>
+    <text>暂无优惠券</text>
+  </view>
+
+  <view class="empty-state" wx:if="{{!app.checkLogin()}}">
+    <text class="empty-icon">🔒</text>
+    <text>登录后查看优惠券</text>
+    <button class="btn-primary login-btn" bindtap="onLoginTap">立即登录</button>
+  </view>
+</view>

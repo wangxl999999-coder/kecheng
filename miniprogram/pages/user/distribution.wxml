@@ -1,0 +1,49 @@
+<view class="page-distribution">
+  <view class="dist-header">
+    <text class="dist-title">💰 分销中心</text>
+    <text class="dist-desc">分享课程，好友购课你得佣金</text>
+  </view>
+
+  <view class="stats-bar" wx:if="{{app.checkLogin()}}">
+    <view class="stat-item">
+      <text class="stat-num">¥{{stats.totalIncome}}</text>
+      <text class="stat-label">累计收益</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{stats.totalOrders}}</text>
+      <text class="stat-label">推广订单</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">{{stats.totalFans}}</text>
+      <text class="stat-label">邀请人数</text>
+    </view>
+  </view>
+
+  <view class="poster-section card" wx:if="{{app.checkLogin()}}">
+    <text class="section-title">生成推广海报</text>
+    <view class="poster-preview" wx:if="{{posterUrl}}">
+      <image class="poster-img" src="{{posterUrl}}" mode="aspectFill" />
+    </view>
+    <view class="poster-placeholder" wx:else>
+      <text class="poster-icon">🖼️</text>
+      <text class="poster-text">海报预览</text>
+    </view>
+    <view class="poster-actions">
+      <button class="btn-primary generate-btn" bindtap="onGeneratePoster">生成海报</button>
+      <button class="btn-primary share-btn" open-type="share">分享给好友</button>
+    </view>
+  </view>
+
+  <view class="rules-section card" wx:if="{{app.checkLogin()}}">
+    <text class="section-title">📋 推广规则</text>
+    <text class="rule-item">1. 分享课程给好友，好友通过你的链接购买课程，你将获得10%-30%的佣金</text>
+    <text class="rule-item">2. 佣金将在订单确认后自动结算到你的账户</text>
+    <text class="rule-item">3. 你可以随时在分销中心查看推广数据和收益</text>
+  </view>
+
+  <view class="empty-state" wx:if="{{!app.checkLogin()}}">
+    <text class="empty-icon">🔒</text>
+    <text>登录后使用分销功能</text>
+    <button class="btn-primary login-btn" bindtap="onLoginTap">立即登录</button>
+  </view>
+</view>

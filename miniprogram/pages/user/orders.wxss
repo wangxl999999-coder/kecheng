@@ -1,0 +1,13 @@
+.page-orders { min-height: 100vh; background: #f5f5f5; padding: 20rpx 30rpx; }
+.order-card { padding: 24rpx; margin-bottom: 20rpx; }
+.order-header { margin-bottom: 16rpx; }
+.order-no { font-size: 24rpx; color: #999; }
+.order-status { font-size: 24rpx; padding: 4rpx 16rpx; border-radius: 8rpx; }
+.order-status.paid { background: #e8f5e9; color: #4caf50; }
+.order-content { padding: 16rpx 0; border-top: 1rpx solid #f0f0f0; border-bottom: 1rpx solid #f0f0f0; }
+.order-title { font-size: 28rpx; font-weight: bold; }
+.order-footer { margin-top: 16rpx; }
+.order-type { font-size: 24rpx; color: #666; }
+.order-amount { font-size: 30rpx; color: #ff6b35; font-weight: bold; }
+.order-time { font-size: 22rpx; color: #999; display: block; margin-top: 8rpx; }
+.login-btn { margin-top: 30rpx; width: 300rpx; }

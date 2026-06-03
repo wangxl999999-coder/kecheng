@@ -1,0 +1,32 @@
+<view class="page-login">
+  <view class="login-header">
+    <text class="login-logo">📚</text>
+    <text class="login-title">知趣课堂</text>
+    <text class="login-subtitle">知识付费学习平台</text>
+  </view>
+
+  <view class="login-form">
+    <view class="form-item">
+      <text class="form-label">手机号</text>
+      <input class="form-input" type="number" placeholder="请输入手机号" maxlength="11" value="{{phone}}" bindinput="onPhoneInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">验证码</text>
+      <input class="form-input code-input" type="number" placeholder="请输入验证码" maxlength="6" value="{{code}}" bindinput="onCodeInput" />
+      <button class="code-btn {{counting ? 'disabled' : ''}}" bindtap="onSendCode" disabled="{{counting}}">
+        {{counting ? countdown + 's后重发' : '获取验证码'}}
+      </button>
+    </view>
+    <button class="btn-primary login-btn" bindtap="onLogin">登录</button>
+    <view class="agreement">
+      <text class="agreement-text">登录即表示同意</text>
+      <text class="agreement-link" bindtap="onPrivacyTap">《隐私政策》</text>
+    </view>
+  </view>
+
+  <view class="login-tips">
+    <text class="tips-title">测试账号提示</text>
+    <text class="tips-content">手机号：任意有效手机号</text>
+    <text class="tips-content">验证码：123456</text>
+  </view>
+</view>

@@ -1,0 +1,20 @@
+<view class="page-notes">
+  <view class="note-list" wx:if="{{notes.length > 0}}">
+    <view class="note-card card" wx:for="{{notes}}" wx:key="id" bindtap="onNoteTap" data-courseid="{{item.courseId}}" data-lessonid="{{item.lessonId}}">
+      <text class="note-course">{{item.courseTitle}}</text>
+      <view class="note-highlight" wx:if="{{item.highlight}}">{{item.highlight}}</view>
+      <text class="note-content">{{item.content}}</text>
+      <text class="note-time">{{item.createdAt}}</text>
+    </view>
+  </view>
+  <view class="empty-state" wx:if="{{notes.length === 0 && !loading && app.checkLogin()}}">
+    <text class="empty-icon">📝</text>
+    <text>暂无学习笔记</text>
+    <text class="empty-desc">在阅读文章时长按文字即可添加笔记</text>
+  </view>
+  <view class="empty-state" wx:if="{{!app.checkLogin()}}">
+    <text class="empty-icon">🔒</text>
+    <text>登录后查看笔记</text>
+    <button class="btn-primary login-btn" bindtap="onLoginTap">立即登录</button>
+  </view>
+</view>

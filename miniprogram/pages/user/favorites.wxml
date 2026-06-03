@@ -1,0 +1,25 @@
+<view class="page-favorites">
+  <view class="course-list" wx:if="{{favorites.length > 0}}">
+    <view class="course-card card" wx:for="{{favorites}}" wx:key="id">
+      <image class="course-cover" src="{{item.course.cover}}" mode="aspectFill" bindtap="onCourseTap" data-id="{{item.courseId}}" />
+      <view class="course-info" bindtap="onCourseTap" data-id="{{item.courseId}}">
+        <text class="course-title text-ellipsis-2">{{item.course.title}}</text>
+        <text class="course-teacher">{{item.course.teacherName}}</text>
+        <view class="course-meta">
+          <text class="price">{{item.course.price}}</text>
+          <text class="original-price">{{item.course.originalPrice}}</text>
+        </view>
+      </view>
+      <text class="cancel-fav" catchtap="onCancelFavorite" data-id="{{item.courseId}}">取消收藏</text>
+    </view>
+  </view>
+  <view class="empty-state" wx:if="{{favorites.length === 0 && !loading && app.checkLogin()}}">
+    <text class="empty-icon">❤️</text>
+    <text>暂无收藏课程</text>
+  </view>
+  <view class="empty-state" wx:if="{{!app.checkLogin()}}">
+    <text class="empty-icon">🔒</text>
+    <text>登录后查看收藏</text>
+    <button class="btn-primary login-btn" bindtap="onLoginTap">立即登录</button>
+  </view>
+</view>
